@@ -1,0 +1,8 @@
+rules:
+  - id: aws-hardcoded-credentials
+    patterns:
+      - pattern: aws_access_key_id
+      - pattern: aws_secret_access_key
+    message: "Hardcoded AWS credentials found"
+    severity: ERROR
+    languages: [python, javascript, typescript, yaml, json]

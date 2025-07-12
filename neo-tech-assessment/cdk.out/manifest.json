@@ -1,0 +1,246 @@
+{
+  "version": "45.0.0",
+  "artifacts": {
+    "NeoTechAssessmentStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "NeoTechAssessmentStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "NeoTechAssessmentStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "NeoTechAssessmentStack.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/5aedc06c85168d9c9e64d378f4c24a4efbc64f17c452895ec33223e9aec64ab6.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "NeoTechAssessmentStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "NeoTechAssessmentStack.assets"
+      ],
+      "metadata": {
+        "/NeoTechAssessmentStack/NeoTechVPC/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "NeoTechVPCDAC3DB2A"
+          }
+        ],
+        "/NeoTechAssessmentStack/NeoTechVPC/PublicSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "NeoTechVPCPublicSubnet1Subnet526180C5"
+          }
+        ],
+        "/NeoTechAssessmentStack/NeoTechVPC/PublicSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "NeoTechVPCPublicSubnet1RouteTable4A87757B"
+          }
+        ],
+        "/NeoTechAssessmentStack/NeoTechVPC/PublicSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "NeoTechVPCPublicSubnet1RouteTableAssociationDE9375AA"
+          }
+        ],
+        "/NeoTechAssessmentStack/NeoTechVPC/PublicSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "NeoTechVPCPublicSubnet1DefaultRoute0B31E569"
+          }
+        ],
+        "/NeoTechAssessmentStack/NeoTechVPC/PublicSubnet1/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "NeoTechVPCPublicSubnet1EIP8292F52B"
+          }
+        ],
+        "/NeoTechAssessmentStack/NeoTechVPC/PublicSubnet1/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "NeoTechVPCPublicSubnet1NATGateway3A8DB5BE"
+          }
+        ],
+        "/NeoTechAssessmentStack/NeoTechVPC/PublicSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "NeoTechVPCPublicSubnet2Subnet7E9F384A"
+          }
+        ],
+        "/NeoTechAssessmentStack/NeoTechVPC/PublicSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "NeoTechVPCPublicSubnet2RouteTable08538449"
+          }
+        ],
+        "/NeoTechAssessmentStack/NeoTechVPC/PublicSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "NeoTechVPCPublicSubnet2RouteTableAssociationBB2BE66C"
+          }
+        ],
+        "/NeoTechAssessmentStack/NeoTechVPC/PublicSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "NeoTechVPCPublicSubnet2DefaultRoute59748E21"
+          }
+        ],
+        "/NeoTechAssessmentStack/NeoTechVPC/PublicSubnet2/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "NeoTechVPCPublicSubnet2EIP38D927EE"
+          }
+        ],
+        "/NeoTechAssessmentStack/NeoTechVPC/PublicSubnet2/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "NeoTechVPCPublicSubnet2NATGatewayA1C9D98A"
+          }
+        ],
+        "/NeoTechAssessmentStack/NeoTechVPC/PrivateSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "NeoTechVPCPrivateSubnet1Subnet1D627037"
+          }
+        ],
+        "/NeoTechAssessmentStack/NeoTechVPC/PrivateSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "NeoTechVPCPrivateSubnet1RouteTableE0107359"
+          }
+        ],
+        "/NeoTechAssessmentStack/NeoTechVPC/PrivateSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "NeoTechVPCPrivateSubnet1RouteTableAssociation615FE3FC"
+          }
+        ],
+        "/NeoTechAssessmentStack/NeoTechVPC/PrivateSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "NeoTechVPCPrivateSubnet1DefaultRoute9362FD64"
+          }
+        ],
+        "/NeoTechAssessmentStack/NeoTechVPC/PrivateSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "NeoTechVPCPrivateSubnet2Subnet84DB4E1B"
+          }
+        ],
+        "/NeoTechAssessmentStack/NeoTechVPC/PrivateSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "NeoTechVPCPrivateSubnet2RouteTable3E13FCE1"
+          }
+        ],
+        "/NeoTechAssessmentStack/NeoTechVPC/PrivateSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "NeoTechVPCPrivateSubnet2RouteTableAssociationA342A704"
+          }
+        ],
+        "/NeoTechAssessmentStack/NeoTechVPC/PrivateSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "NeoTechVPCPrivateSubnet2DefaultRoute812DC221"
+          }
+        ],
+        "/NeoTechAssessmentStack/NeoTechVPC/IGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "NeoTechVPCIGWCD42CD81"
+          }
+        ],
+        "/NeoTechAssessmentStack/NeoTechVPC/VPCGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "NeoTechVPCVPCGWC6DF6EF2"
+          }
+        ],
+        "/NeoTechAssessmentStack/GhostSG/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "GhostSGB43D50A3"
+          }
+        ],
+        "/NeoTechAssessmentStack/GhostRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "GhostRole1DC08000"
+          }
+        ],
+        "/NeoTechAssessmentStack/GhostInstance/InstanceProfile": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "GhostInstanceInstanceProfile0D50570D"
+          }
+        ],
+        "/NeoTechAssessmentStack/GhostInstance/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "GhostInstance64934257"
+          }
+        ],
+        "/NeoTechAssessmentStack/SsmParameterValue:--aws--service--ami-amazon-linux-latest--al2023-ami-kernel-6.1-x86_64:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SsmParameterValueawsserviceamiamazonlinuxlatestal2023amikernel61x8664C96584B6F00A464EAD1953AFF4B05118Parameter"
+          }
+        ],
+        "/NeoTechAssessmentStack/PublicIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PublicIP"
+          }
+        ],
+        "/NeoTechAssessmentStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/NeoTechAssessmentStack/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/NeoTechAssessmentStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/NeoTechAssessmentStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "NeoTechAssessmentStack"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  },
+  "minimumCliVersion": "2.1020.2"
+}

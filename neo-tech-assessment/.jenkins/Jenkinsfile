@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+
+    environment {
+        AWS_ACCESS_KEY_ID     = credentials('aws-access-key')
+        AWS_SECRET_ACCESS_KEY = credentials('aws-secret-key')
+        SLACK_WEBHOOK         = credentials('slack-webhook')
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        stage('Semgrep SAST') {
+            steps {
+                sh '''
+                    pip install --user semgrep || true
+                    ~/.local/bin/semgrep --config=semgrep/semgrep.yml --json > semgrep-results.json || true
+                    curl -X POST -H 'Content-type: application/json' --data @semgrep-results.json $SLACK_WEBHOOK || true
+                '''
+            }
+        }
+        stage('CDK Deploy') {
+            steps {
+                sh '''
+                    npm install -g aws-cdk
+                    npm install
+                    cdk bootstrap || true
+                    cdk deploy --require-approval never
+                '''
+            }
+        }
+    }
+
+    post {
+        success {
+            slackSend(channel: '#neo-tech', color: 'good', message: "Deployment successful!")
+        }
+        failure {
+            slackSend(channel: '#neo-tech', color: 'danger', message: "Deployment failed!")
+        }
+    }
+}

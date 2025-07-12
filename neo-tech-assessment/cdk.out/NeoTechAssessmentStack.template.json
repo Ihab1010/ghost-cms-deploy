@@ -1,0 +1,927 @@
+{
+ "Resources": {
+  "NeoTechVPCDAC3DB2A": {
+   "Type": "AWS::EC2::VPC",
+   "Properties": {
+    "CidrBlock": "10.0.0.0/16",
+    "EnableDnsHostnames": true,
+    "EnableDnsSupport": true,
+    "InstanceTenancy": "default",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "NeoTechAssessmentStack/NeoTechVPC"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "NeoTechAssessmentStack/NeoTechVPC/Resource"
+   }
+  },
+  "NeoTechVPCPublicSubnet1Subnet526180C5": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": {
+     "Fn::Select": [
+      0,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.0.0/18",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Public"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "NeoTechAssessmentStack/NeoTechVPC/PublicSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "NeoTechVPCDAC3DB2A"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "NeoTechAssessmentStack/NeoTechVPC/PublicSubnet1/Subnet"
+   }
+  },
+  "NeoTechVPCPublicSubnet1RouteTable4A87757B": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "NeoTechAssessmentStack/NeoTechVPC/PublicSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "NeoTechVPCDAC3DB2A"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "NeoTechAssessmentStack/NeoTechVPC/PublicSubnet1/RouteTable"
+   }
+  },
+  "NeoTechVPCPublicSubnet1RouteTableAssociationDE9375AA": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "NeoTechVPCPublicSubnet1RouteTable4A87757B"
+    },
+    "SubnetId": {
+     "Ref": "NeoTechVPCPublicSubnet1Subnet526180C5"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "NeoTechAssessmentStack/NeoTechVPC/PublicSubnet1/RouteTableAssociation"
+   }
+  },
+  "NeoTechVPCPublicSubnet1DefaultRoute0B31E569": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "NeoTechVPCIGWCD42CD81"
+    },
+    "RouteTableId": {
+     "Ref": "NeoTechVPCPublicSubnet1RouteTable4A87757B"
+    }
+   },
+   "DependsOn": [
+    "NeoTechVPCVPCGWC6DF6EF2"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "NeoTechAssessmentStack/NeoTechVPC/PublicSubnet1/DefaultRoute"
+   }
+  },
+  "NeoTechVPCPublicSubnet1EIP8292F52B": {
+   "Type": "AWS::EC2::EIP",
+   "Properties": {
+    "Domain": "vpc",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "NeoTechAssessmentStack/NeoTechVPC/PublicSubnet1"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "NeoTechAssessmentStack/NeoTechVPC/PublicSubnet1/EIP"
+   }
+  },
+  "NeoTechVPCPublicSubnet1NATGateway3A8DB5BE": {
+   "Type": "AWS::EC2::NatGateway",
+   "Properties": {
+    "AllocationId": {
+     "Fn::GetAtt": [
+      "NeoTechVPCPublicSubnet1EIP8292F52B",
+      "AllocationId"
+     ]
+    },
+    "SubnetId": {
+     "Ref": "NeoTechVPCPublicSubnet1Subnet526180C5"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "NeoTechAssessmentStack/NeoTechVPC/PublicSubnet1"
+     }
+    ]
+   },
+   "DependsOn": [
+    "NeoTechVPCPublicSubnet1DefaultRoute0B31E569",
+    "NeoTechVPCPublicSubnet1RouteTableAssociationDE9375AA"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "NeoTechAssessmentStack/NeoTechVPC/PublicSubnet1/NATGateway"
+   }
+  },
+  "NeoTechVPCPublicSubnet2Subnet7E9F384A": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": {
+     "Fn::Select": [
+      1,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.64.0/18",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Public"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "NeoTechAssessmentStack/NeoTechVPC/PublicSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "NeoTechVPCDAC3DB2A"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "NeoTechAssessmentStack/NeoTechVPC/PublicSubnet2/Subnet"
+   }
+  },
+  "NeoTechVPCPublicSubnet2RouteTable08538449": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "NeoTechAssessmentStack/NeoTechVPC/PublicSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "NeoTechVPCDAC3DB2A"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "NeoTechAssessmentStack/NeoTechVPC/PublicSubnet2/RouteTable"
+   }
+  },
+  "NeoTechVPCPublicSubnet2RouteTableAssociationBB2BE66C": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "NeoTechVPCPublicSubnet2RouteTable08538449"
+    },
+    "SubnetId": {
+     "Ref": "NeoTechVPCPublicSubnet2Subnet7E9F384A"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "NeoTechAssessmentStack/NeoTechVPC/PublicSubnet2/RouteTableAssociation"
+   }
+  },
+  "NeoTechVPCPublicSubnet2DefaultRoute59748E21": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "NeoTechVPCIGWCD42CD81"
+    },
+    "RouteTableId": {
+     "Ref": "NeoTechVPCPublicSubnet2RouteTable08538449"
+    }
+   },
+   "DependsOn": [
+    "NeoTechVPCVPCGWC6DF6EF2"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "NeoTechAssessmentStack/NeoTechVPC/PublicSubnet2/DefaultRoute"
+   }
+  },
+  "NeoTechVPCPublicSubnet2EIP38D927EE": {
+   "Type": "AWS::EC2::EIP",
+   "Properties": {
+    "Domain": "vpc",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "NeoTechAssessmentStack/NeoTechVPC/PublicSubnet2"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "NeoTechAssessmentStack/NeoTechVPC/PublicSubnet2/EIP"
+   }
+  },
+  "NeoTechVPCPublicSubnet2NATGatewayA1C9D98A": {
+   "Type": "AWS::EC2::NatGateway",
+   "Properties": {
+    "AllocationId": {
+     "Fn::GetAtt": [
+      "NeoTechVPCPublicSubnet2EIP38D927EE",
+      "AllocationId"
+     ]
+    },
+    "SubnetId": {
+     "Ref": "NeoTechVPCPublicSubnet2Subnet7E9F384A"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "NeoTechAssessmentStack/NeoTechVPC/PublicSubnet2"
+     }
+    ]
+   },
+   "DependsOn": [
+    "NeoTechVPCPublicSubnet2DefaultRoute59748E21",
+    "NeoTechVPCPublicSubnet2RouteTableAssociationBB2BE66C"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "NeoTechAssessmentStack/NeoTechVPC/PublicSubnet2/NATGateway"
+   }
+  },
+  "NeoTechVPCPrivateSubnet1Subnet1D627037": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": {
+     "Fn::Select": [
+      0,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.128.0/18",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Private"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Private"
+     },
+     {
+      "Key": "Name",
+      "Value": "NeoTechAssessmentStack/NeoTechVPC/PrivateSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "NeoTechVPCDAC3DB2A"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "NeoTechAssessmentStack/NeoTechVPC/PrivateSubnet1/Subnet"
+   }
+  },
+  "NeoTechVPCPrivateSubnet1RouteTableE0107359": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "NeoTechAssessmentStack/NeoTechVPC/PrivateSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "NeoTechVPCDAC3DB2A"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "NeoTechAssessmentStack/NeoTechVPC/PrivateSubnet1/RouteTable"
+   }
+  },
+  "NeoTechVPCPrivateSubnet1RouteTableAssociation615FE3FC": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "NeoTechVPCPrivateSubnet1RouteTableE0107359"
+    },
+    "SubnetId": {
+     "Ref": "NeoTechVPCPrivateSubnet1Subnet1D627037"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "NeoTechAssessmentStack/NeoTechVPC/PrivateSubnet1/RouteTableAssociation"
+   }
+  },
+  "NeoTechVPCPrivateSubnet1DefaultRoute9362FD64": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "NatGatewayId": {
+     "Ref": "NeoTechVPCPublicSubnet1NATGateway3A8DB5BE"
+    },
+    "RouteTableId": {
+     "Ref": "NeoTechVPCPrivateSubnet1RouteTableE0107359"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "NeoTechAssessmentStack/NeoTechVPC/PrivateSubnet1/DefaultRoute"
+   }
+  },
+  "NeoTechVPCPrivateSubnet2Subnet84DB4E1B": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": {
+     "Fn::Select": [
+      1,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.192.0/18",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Private"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Private"
+     },
+     {
+      "Key": "Name",
+      "Value": "NeoTechAssessmentStack/NeoTechVPC/PrivateSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "NeoTechVPCDAC3DB2A"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "NeoTechAssessmentStack/NeoTechVPC/PrivateSubnet2/Subnet"
+   }
+  },
+  "NeoTechVPCPrivateSubnet2RouteTable3E13FCE1": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "NeoTechAssessmentStack/NeoTechVPC/PrivateSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "NeoTechVPCDAC3DB2A"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "NeoTechAssessmentStack/NeoTechVPC/PrivateSubnet2/RouteTable"
+   }
+  },
+  "NeoTechVPCPrivateSubnet2RouteTableAssociationA342A704": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "NeoTechVPCPrivateSubnet2RouteTable3E13FCE1"
+    },
+    "SubnetId": {
+     "Ref": "NeoTechVPCPrivateSubnet2Subnet84DB4E1B"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "NeoTechAssessmentStack/NeoTechVPC/PrivateSubnet2/RouteTableAssociation"
+   }
+  },
+  "NeoTechVPCPrivateSubnet2DefaultRoute812DC221": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "NatGatewayId": {
+     "Ref": "NeoTechVPCPublicSubnet2NATGatewayA1C9D98A"
+    },
+    "RouteTableId": {
+     "Ref": "NeoTechVPCPrivateSubnet2RouteTable3E13FCE1"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "NeoTechAssessmentStack/NeoTechVPC/PrivateSubnet2/DefaultRoute"
+   }
+  },
+  "NeoTechVPCIGWCD42CD81": {
+   "Type": "AWS::EC2::InternetGateway",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "NeoTechAssessmentStack/NeoTechVPC"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "NeoTechAssessmentStack/NeoTechVPC/IGW"
+   }
+  },
+  "NeoTechVPCVPCGWC6DF6EF2": {
+   "Type": "AWS::EC2::VPCGatewayAttachment",
+   "Properties": {
+    "InternetGatewayId": {
+     "Ref": "NeoTechVPCIGWCD42CD81"
+    },
+    "VpcId": {
+     "Ref": "NeoTechVPCDAC3DB2A"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "NeoTechAssessmentStack/NeoTechVPC/VPCGW"
+   }
+  },
+  "GhostSGB43D50A3": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "Allow HTTP and SSH",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "SecurityGroupIngress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow SSH",
+      "FromPort": 22,
+      "IpProtocol": "tcp",
+      "ToPort": 22
+     },
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow HTTP",
+      "FromPort": 80,
+      "IpProtocol": "tcp",
+      "ToPort": 80
+     }
+    ],
+    "VpcId": {
+     "Ref": "NeoTechVPCDAC3DB2A"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "NeoTechAssessmentStack/GhostSG/Resource"
+   }
+  },
+  "GhostRole1DC08000": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "ec2.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/AmazonSSMManagedInstanceCore"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "NeoTechAssessmentStack/GhostRole/Resource"
+   }
+  },
+  "GhostInstanceInstanceProfile0D50570D": {
+   "Type": "AWS::IAM::InstanceProfile",
+   "Properties": {
+    "Roles": [
+     {
+      "Ref": "GhostRole1DC08000"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "NeoTechAssessmentStack/GhostInstance/InstanceProfile"
+   }
+  },
+  "GhostInstance64934257": {
+   "Type": "AWS::EC2::Instance",
+   "Properties": {
+    "AvailabilityZone": {
+     "Fn::Select": [
+      0,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "IamInstanceProfile": {
+     "Ref": "GhostInstanceInstanceProfile0D50570D"
+    },
+    "ImageId": {
+     "Ref": "SsmParameterValueawsserviceamiamazonlinuxlatestal2023amikernel61x8664C96584B6F00A464EAD1953AFF4B05118Parameter"
+    },
+    "InstanceType": "t3.micro",
+    "NetworkInterfaces": [
+     {
+      "AssociatePublicIpAddress": true,
+      "DeviceIndex": "0",
+      "GroupSet": [
+       {
+        "Fn::GetAtt": [
+         "GhostSGB43D50A3",
+         "GroupId"
+        ]
+       }
+      ],
+      "SubnetId": {
+       "Ref": "NeoTechVPCPublicSubnet1Subnet526180C5"
+      }
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "NeoTechAssessmentStack/GhostInstance"
+     }
+    ],
+    "UserData": {
+     "Fn::Base64": "#!/bin/bash\n#!/bin/bash\nexec > >(tee /var/log/ghost-setup.log|logger -t user-data -s 2>/dev/console) 2>&1\necho \"==> Updating system\"\ndnf update -y\necho \"==> Installing Node.js and Nginx\"\ndnf install -y nodejs nginx\necho \"==> Installing Ghost CLI globally\"\nnpm install ghost-cli@latest -g\necho \"==> Preparing Ghost directory\"\nmkdir -p /var/www/ghost\nchown ec2-user:ec2-user /var/www/ghost\nchmod 775 /var/www/ghost\necho \"==> Installing Ghost as ec2-user in /var/www/ghost\"\nsudo -u ec2-user -H bash -c \"cd /var/www/ghost && ghost install --no-prompt --db sqlite3 --no-setup-nginx --no-setup-systemd --process local --url http://0.0.0.0\"\necho \"==> Configuring Nginx reverse proxy\"\ncat > /etc/nginx/nginx.conf <<EOF\nuser nginx;\nworker_processes auto;\nerror_log /var/log/nginx/error.log;\npid /run/nginx.pid;\n\nevents {\n    worker_connections 1024;\n}\n\nhttp {\n    include       /etc/nginx/mime.types;\n    default_type  application/octet-stream;\n    sendfile        on;\n    keepalive_timeout  65;\n\n    server {\n        listen 80;\n        server_name _;\n\n        location / {\n            proxy_pass http://127.0.0.1:2368;\n            proxy_set_header Host $$host;\n            proxy_set_header X-Real-IP $$remote_addr;\n            proxy_set_header X-Forwarded-For $$proxy_add_x_forwarded_for;\n            proxy_set_header X-Forwarded-Proto $$scheme;\n        }\n    }\n}\nEOF\necho \"==> Enabling and starting Nginx\"\nsystemctl enable nginx\nsystemctl start nginx"
+    }
+   },
+   "DependsOn": [
+    "GhostRole1DC08000",
+    "NeoTechVPCPublicSubnet1DefaultRoute0B31E569",
+    "NeoTechVPCPublicSubnet1RouteTableAssociationDE9375AA",
+    "NeoTechVPCPublicSubnet2DefaultRoute59748E21",
+    "NeoTechVPCPublicSubnet2RouteTableAssociationBB2BE66C"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "NeoTechAssessmentStack/GhostInstance/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1VOy2rDMBD8ltxl1RWFnkMowZdW2CXXslY2dBN7ZaRVTDD+9+KqielpHjs7jNGmfNHlBsZYuOOl6KjVUyPgLgrG+DWhM3o6DE7tTnywO2VT25FrUssoi7ey2ifBT2g7XP3V28boHYGQ50d4IW+VXeAdZA+CI9yUDXQFwbW4YsHA+AjkJX9qKwLuu0cW1aBLgeS2Dz4Nvxv+GRVHAXaYKzOfFUGvp9rn0Xe8n23wJ+pwnlWN0aeQny0E6FEwLOIjyZBkVuyPqM/x6WqMfn7V5eYciYqQWKhHXWf8ATprzK5tAQAA"
+   },
+   "Metadata": {
+    "aws:cdk:path": "NeoTechAssessmentStack/CDKMetadata/Default"
+   },
+   "Condition": "CDKMetadataAvailable"
+  }
+ },
+ "Parameters": {
+  "SsmParameterValueawsserviceamiamazonlinuxlatestal2023amikernel61x8664C96584B6F00A464EAD1953AFF4B05118Parameter": {
+   "Type": "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>",
+   "Default": "/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-6.1-x86_64"
+  },
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Outputs": {
+  "PublicIP": {
+   "Description": "Public IP of Ghost CMS",
+   "Value": {
+    "Fn::GetAtt": [
+     "GhostInstance64934257",
+     "PublicIp"
+    ]
+   }
+  }
+ },
+ "Conditions": {
+  "CDKMetadataAvailable": {
+   "Fn::Or": [
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "af-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-3"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-4"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-northwest-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-2"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "il-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "sa-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-west-1"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Equals": [
+      {
+       "Ref": "AWS::Region"
+      },
+      "us-west-2"
+     ]
+    }
+   ]
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

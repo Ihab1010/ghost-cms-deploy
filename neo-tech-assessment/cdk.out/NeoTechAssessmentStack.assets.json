@@ -1,0 +1,20 @@
+{
+  "version": "45.0.0",
+  "files": {
+    "5aedc06c85168d9c9e64d378f4c24a4efbc64f17c452895ec33223e9aec64ab6": {
+      "displayName": "NeoTechAssessmentStack Template",
+      "source": {
+        "path": "NeoTechAssessmentStack.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "current_account-current_region": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}",
+          "objectKey": "5aedc06c85168d9c9e64d378f4c24a4efbc64f17c452895ec33223e9aec64ab6.json",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-${AWS::Region}"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}
