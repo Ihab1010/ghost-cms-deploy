@@ -3,7 +3,7 @@
 
 This project delivers the **Neo Technologies DevOps Assessment** by deploying Ghost CMS on AWS using **AWS CDK**, with CI/CD handled by **Jenkins** and security scans powered by **Semgrep**. The architecture and practices strictly follow **AWS best practices** and keep within **free-tier limits**.
 
-## 📦 Project Overview
+##  Project Overview
 
 - **Infrastructure as Code (IaC)**: AWS CDK (TypeScript)
 - **CI/CD Pipeline**: Jenkins with stages for SAST (Semgrep), deployment, and Slack notifications.
@@ -12,7 +12,7 @@ This project delivers the **Neo Technologies DevOps Assessment** by deploying Gh
 
 ---
 
-## 🛠 Architecture Design
+##  Architecture Design
 
 ### 1️⃣ AWS Resources
 - **VPC**: Public & Private subnets with NAT Gateways (within free-tier limits).
@@ -35,7 +35,7 @@ This project delivers the **Neo Technologies DevOps Assessment** by deploying Gh
 
 ---
 
-## 🚀 CI/CD Pipeline (Jenkins)
+##  CI/CD Pipeline (Jenkins)
 
 The Jenkins pipeline performs:
 1. **Checkout**: Retrieves code from the Git repository.
@@ -52,7 +52,7 @@ The Jenkins pipeline performs:
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 ```
 neo-tech-assessment/
@@ -71,7 +71,7 @@ neo-tech-assessment/
 
 ---
 
-## ✅ Requirements Covered
+##  Requirements Covered
 
 | Requirement                       | Implementation                                                |
 |------------------------------------|----------------------------------------------------------------|
@@ -84,7 +84,7 @@ neo-tech-assessment/
 
 ---
 
-## 📝 Deployment Instructions
+##  Deployment Instructions
 
 ### 1️⃣ Prerequisites
 - AWS CLI configured with appropriate permissions
@@ -112,14 +112,14 @@ chmod +x local-test.sh
 
 ---
 
-## 🔐 Security Considerations
+##  Security Considerations
 - EC2 IAM Role only allows SSM, no SSH key pairs created.
 - Security Group only exposes port 80 (HTTP) and 22 (SSH).
 - Nginx reverse proxy configured with secure headers.
 
 ---
 
-## 📣 Notes
+##  Notes
 - All resources are provisioned within AWS Free Tier limits.
 - Reviewer can clone the repository, set up Jenkins, and run the pipeline without modification.
 - Semgrep results are posted to Slack for visibility.
