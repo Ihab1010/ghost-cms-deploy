@@ -14,7 +14,7 @@ This project delivers the **Neo Technologies DevOps Assessment** by deploying Gh
 
 ##  Architecture Design
 
-### 1️ AWS Resources
+### 1️) AWS Resources
 - **VPC**: Public & Private subnets with NAT Gateways (within free-tier limits).
 - **EC2**: Amazon Linux 2023 instance (t3.micro) hosting Ghost CMS.
 - **Security Groups**:
@@ -22,12 +22,12 @@ This project delivers the **Neo Technologies DevOps Assessment** by deploying Gh
   - All outbound traffic allowed for updates and package installations.
 - **IAM Role**: Grants SSM access for secure management (no key-based SSH needed).
 
-### 2️ Application Stack
+### 2️) Application Stack
 - **Node.js & Nginx**: Installed via UserData for serving Ghost CMS.
 - **Ghost CMS**: Installed as a non-root user (`ec2-user`).
 - **Nginx**: Acts as a reverse proxy to Ghost.
 
-### 3️ Security Measures
+### 3️) Security Measures
 - Enforced **least privilege IAM** for EC2 (AmazonSSMManagedInstanceCore).
 - Disabled direct `root` access for Ghost installation.
 - Configured Nginx with secure headers.
@@ -86,13 +86,13 @@ neo-tech-assessment/
 
 ##  Deployment Instructions
 
-### 1️ Prerequisites
+### 1️) Prerequisites
 - AWS CLI configured with appropriate permissions
 - Node.js & npm installed
 - AWS CDK installed globally (`npm install -g aws-cdk`)
 - Jenkins server setup (with credentials for AWS and Slack)
 
-### 2️ Deploy from Local (Manual)
+### 2️) Deploy from Local (Manual)
 ```bash
 # Install dependencies
 npm install
@@ -104,7 +104,7 @@ cdk bootstrap
 cdk deploy --require-approval never
 ```
 
-### 3️ Run CI/CD Locally (Optional)
+### 3️) Run CI/CD Locally (Optional)
 ```bash
 chmod +x local-test.sh
 ./local-test.sh
